@@ -1,7 +1,12 @@
+/* eslint-disable require-jsdoc */
 import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import {Counter} from './features/counter/Counter';
 import './App.css';
+import {Redirect, Route, Switch, withRouter} from 'react-router';
+import Layout from './components/layout/Layout';
+import Home from './components/Home';
+
 
 function App() {
   return (
@@ -55,4 +60,16 @@ function App() {
   );
 }
 
-export default App;
+function App2() {
+
+  return (
+    <Layout>
+      <Switch>
+        <Route path="/home" exact component={Home} />
+        <Redirect to="/home" />
+      </Switch>
+    </Layout>
+  );
+};
+
+export default (App2);
