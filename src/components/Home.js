@@ -1,6 +1,8 @@
 import { IconButton, Input, InputBase, makeStyles, Paper } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getMovieByKeyword } from '../container/MovieSlice';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -26,13 +28,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = props => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const [movieName, setMovieName] = useState('');
+
+  const searchMovies = (keyword) => {
+
+  }
 
   return (
     <div className={classes.wrapper}>
       <div className={classes.searchBox}>
         <Paper className={classes.paper}>
-          <Input placeholder="Search any keyword" className={classes.input} inputProps={{ 'aria-label': 'description' }}></Input>
-          <IconButton>
+          <Input placeholder="Search any keyword" className={classes.input} inputProps={{ 'aria-label': 'description' }} onChange={(event) => setMovieName(event.target.value)}></Input>
+          <IconButton onClick={() => dispatch(getMovieByKeyword(movieName))}>
             <SearchIcon />
           </IconButton>
         </Paper>
