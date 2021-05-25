@@ -1,4 +1,4 @@
-import { Card, CardContent, Container, Grid, IconButton, Input, InputBase, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, Container, Grid, IconButton, Input, InputBase, makeStyles, Paper, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -49,6 +49,7 @@ const Home = props => {
       <div>
         <MovieList />
       </div>
+      <Button>Load More</Button>
       </div>
     </div>
     </Container>

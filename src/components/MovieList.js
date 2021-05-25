@@ -1,5 +1,6 @@
-import { Button, Card, CardContent, CardMedia, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, { useState } from 'react';
+import { Button, Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
+import React, {useState} from 'react';
+import ImageZoom from 'react-medium-image-zoom';
 import { useSelector } from 'react-redux';
 import { movieList } from '../container/MovieSlice';
 
@@ -52,13 +53,28 @@ const MovieList = () => {
   const classes = useStyles();
   const movies = useSelector(movieList);
 
+  const poster = (img) => {
+    console.log('test')
+  }
+
   return (
     <Grid container spacing={2}>
       {movies.map((movie, i) => 
         <Grid key={i} item  xs={12} md={6} lg={4}>
           <Card className={classes.card}>
-            <div className={classes.poster}>
-              <img src={movie.Poster} className={classes.image} alt={movie.Title} />
+            <div className={classes.poster} onClick={poster(movie.Poster)}>
+              {/* <img src={movie.Poster} className={classes.image} alt={movie.Title} /> */}
+              <ImageZoom 
+                image={{
+                  src: movie.Poster,
+                  alt: movie.Poster,
+                  className: classes.image
+                }}
+                zoomImage={{
+                  src: movie.Poster,
+                  alt: movie.Poster,
+                }}
+              />
             </div>
             <div className={classes.cardDescription}>
               <CardContent className={classes.cardContent}>
@@ -83,6 +99,7 @@ const MovieList = () => {
           </Card>
         </Grid>
       )}
+      {/* <Poster /> */}
     </Grid>
   );
 };
