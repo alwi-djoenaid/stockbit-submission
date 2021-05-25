@@ -4,7 +4,7 @@ import { Alert } from '@material-ui/lab';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getMovieByKeyword, movieList } from '../container/MovieSlice';
+import { getMovieByKeyword, movieList } from '../../container/MovieSlice';
 import MovieList from './MovieList';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,9 @@ const Home = props => {
 
   const handleClick = (movieName) => {
     if(movieName.length === 0) {
-      setOpenSnackbar(true);
+      setTimeout(() => {
+        setOpenSnackbar(true);
+      }, 300);
     } else {
       dispatch(getMovieByKeyword(movieName));
     }

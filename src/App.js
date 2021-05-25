@@ -5,8 +5,9 @@ import {Counter} from './features/counter/Counter';
 import './App.css';
 import {Redirect, Route, Switch, withRouter} from 'react-router';
 import Layout from './components/layout/Layout';
-import Home from './components/Home';
-import MovieDetails from './components/MovieDetails';
+import Home from './components/Movie/Home';
+import MovieDetails from './components/Movie/MovieDetails';
+import LogicTest from './components/LogicTest/LogicTest';
 
 
 // function App() {
@@ -73,6 +74,7 @@ function App2(props) {
       <Switch>
         <Route path="/home" exact component={Home} />
         <Route path="/movie/imdb/:id" exact component={MovieDetails} />
+        <Route path="/logicTest" exact component={LogicTest} />
         <Redirect to="/home" />
       </Switch>
     </Layout>

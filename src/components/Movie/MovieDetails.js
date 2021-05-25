@@ -2,7 +2,7 @@ import { Container, Divider, Grid, makeStyles, Paper, Typography } from '@materi
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
-import { getMovieByImdbId, movieDetails } from '../container/MovieSlice';
+import { getMovieByImdbId, movieDetails } from '../../container/MovieSlice';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -63,6 +63,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+/**
+ * 
+ * @param {*} props 
+ * @returns List of movies based on search results
+ */
 const MovieDetails = props => {
   const classes = useStyles();
   const dispatch = useDispatch();

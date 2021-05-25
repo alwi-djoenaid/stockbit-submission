@@ -29,7 +29,7 @@ const Appbar = (props) => {
           Movie Catalogue
         </Typography>
         <Button color="inherit" onClick={() => props.history.push('/home')}>Home</Button>
-        <Button color="inherit">Logic Test</Button>
+        <Button color="inherit" onClick={() => props.history.push('/logicTest')}>Logic Test</Button>
       </AppBar>
     </div>
     

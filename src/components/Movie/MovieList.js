@@ -3,7 +3,7 @@ import React from 'react';
 import ImageZoom from 'react-medium-image-zoom';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router';
-import { movieList } from '../container/MovieSlice';
+import { movieList } from '../../container/MovieSlice';
 
 const useStyles = makeStyles((theme) => ({
   card: {
