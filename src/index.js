@@ -14,19 +14,21 @@ const theme = createMuiTheme({
   },
 });
 
-ReactDOM.render(
+const app = (
     <React.StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
-          <CssBaseline>
-            <MuiThemeProvider theme={theme}>
+      <BrowserRouter>
+        <CssBaseline>
+          <MuiThemeProvider theme={theme}>
+            <Provider store={store}>
               <App />
-            </MuiThemeProvider>
-          </CssBaseline>
-        </BrowserRouter>
-      </Provider>
-    </React.StrictMode>,
-    document.getElementById('root'),
+            </Provider>
+          </MuiThemeProvider>
+        </CssBaseline>
+      </BrowserRouter>
+    </React.StrictMode>
+);
+
+ReactDOM.render(app, document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

@@ -1,4 +1,4 @@
-import {AppBar, makeStyles, Typography} from '@material-ui/core';
+import {AppBar, Button, makeStyles, Typography} from '@material-ui/core';
 import React from 'react';
 import {withRouter} from 'react-router';
 
@@ -8,15 +8,18 @@ const useStyles = makeStyles((theme) => ({
   },
 
   appbar: {
-    padding: '12px 20px'
+    padding: '12px 20px',
+    display: 'flex',
+    flexDirection: 'row'
   },
 
   titleHeader: {
-    fontSize: '24px'
+    fontSize: '24px',
+    flexGrow: 1
   }
 }));
 
-const Appbar = () => {
+const Appbar = (props) => {
   const classes = useStyles();
 
   return (
@@ -25,6 +28,8 @@ const Appbar = () => {
         <Typography variant="h1" className={classes.titleHeader}>
           Movie Catalogue
         </Typography>
+        <Button color="inherit" onClick={() => props.history.push('/home')}>Home</Button>
+        <Button color="inherit">Logic Test</Button>
       </AppBar>
     </div>
     

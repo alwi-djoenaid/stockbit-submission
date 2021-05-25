@@ -5,25 +5,34 @@ const movieService = new MovieService();
 
 const initialState = {
   value: [],
-  status: 'idle'
+  status: 'idle',
+  movieDetail: {},
+  openSnackbar: 'false'
 }
 
 export const getMovieByKeyword = createAsyncThunk(
   'movies/getByKeyword',
   async (keyword) => {
     const response = await movieService.getMovieByKeyword(keyword);
-    console.log(response.data.Search)
-    return response.data.Search;
+    console.log(response.data.Search);
+    console.log(response)
+    return response.data;
   },
 );
+
+export const getMovieByImdbId = createAsyncThunk(
+  'movies/getMovieByImdbId',
+  async (imdbId) => {
+    const response = await movieService.getMovieByImdbId(imdbId);
+    console.log(response.data);
+    return response.data;
+  }
+)
 
 export const movieSlice = createSlice({
   name: 'movie',
   initialState,
   reducers: {
-    // push: (state) => {
-    //   state.value.push('1');
-    // }
   },
   extraReducers: (builder) => {
     builder
@@ -33,11 +42,25 @@ export const movieSlice = createSlice({
       .addCase(getMovieByKeyword.fulfilled, (state, action) => {
         state.status = 'idle';
         state.value = action.payload;
-        console.log(state.value);
+        console.log(state.value)
+
+        if(state.value === undefined){
+          setTimeout(() => {
+            state.openSnackbar = true;
+          }, 3000)
+        }
+      })
+      .addCase(getMovieByImdbId.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getMovieByImdbId.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.movieDetail = action.payload;
       })
   }
 });
 
 export const movieList = (state) => state.movie.value;
+export const movieDetails = (state) => state.movie.movieDetail;
 
 export default movieSlice.reducer;

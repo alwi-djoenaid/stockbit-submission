@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react';
+import { withRouter } from 'react-router';
 
 const useStyles = makeStyles((theme) => ({
   mainContent: {
-    marginTop: '52px',
+    marginTop: '61px',
     flexGrow: 1,
     height: '95vh'
   }
@@ -23,4 +24,4 @@ const Content = (props) => {
   );
 };
 
-export default Content;
+export default withRouter(Content);

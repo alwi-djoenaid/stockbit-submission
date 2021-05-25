@@ -1,7 +1,8 @@
 import { Button, Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core';
-import React, {useState} from 'react';
+import React from 'react';
 import ImageZoom from 'react-medium-image-zoom';
 import { useSelector } from 'react-redux';
+import { withRouter } from 'react-router';
 import { movieList } from '../container/MovieSlice';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,59 +50,59 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const MovieList = () => {
+const MovieList = (props) => {
   const classes = useStyles();
   const movies = useSelector(movieList);
 
-  const poster = (img) => {
-    console.log('test')
-  }
-
   return (
-    <Grid container spacing={2}>
-      {movies.map((movie, i) => 
-        <Grid key={i} item  xs={12} md={6} lg={4}>
-          <Card className={classes.card}>
-            <div className={classes.poster} onClick={poster(movie.Poster)}>
-              {/* <img src={movie.Poster} className={classes.image} alt={movie.Title} /> */}
-              <ImageZoom 
-                image={{
-                  src: movie.Poster,
-                  alt: movie.Poster,
-                  className: classes.image
-                }}
-                zoomImage={{
-                  src: movie.Poster,
-                  alt: movie.Poster,
-                }}
-              />
-            </div>
-            <div className={classes.cardDescription}>
-              <CardContent className={classes.cardContent}>
-                <Typography className={classes.cardHeader} variant="h1">
-                  {movie.Title}
-                </Typography>
-                <Typography className={classes.releaseDate} variant="h2">
-                  {movie.Year}
-                </Typography>
-                <div className={classes.cardDetails}>
-                  <Typography style={{fontSize: "14px"}}>
-                    {movie.Type}
-                  </Typography>
-                </div>
-              </CardContent>
-              <div className={classes.cardButton}>
-                <Button color="primary">
-                  See Details
-                </Button>
-              </div>
-            </div>
-          </Card>
-        </Grid>
-      )}
-      {/* <Poster /> */}
-    </Grid>
+    <div>
+        {movies.length !== 0 ? 
+          <Grid container spacing={2}>
+            {movies.Search.map((movie, i) => 
+              <Grid key={i} item  xs={12} md={6} lg={4}>
+                <Card className={classes.card}>
+                  <div className={classes.poster}>
+                    <ImageZoom 
+                      image={{
+                        src: movie.Poster,
+                        alt: movie.Poster,
+                        className: classes.image
+                      }}
+                      zoomImage={{
+                        src: movie.Poster,
+                        alt: movie.Poster,
+                      }}
+                    />
+                  </div>
+                  <div className={classes.cardDescription}>
+                    <CardContent className={classes.cardContent}>
+                      <Typography className={classes.cardHeader} variant="h1">
+                        {movie.Title}
+                      </Typography>
+                      <Typography className={classes.releaseDate} variant="h2">
+                        {movie.Year}
+                      </Typography>
+                      <div className={classes.cardDetails}>
+                        <Typography style={{fontSize: "14px"}}>
+                          {movie.Type}
+                        </Typography>
+                      </div>
+                    </CardContent>
+                    <div className={classes.cardButton}>
+                      <Button color="primary" to={`/movie/imdb/${movie.imdbID}`} onClick={() => props.history.push(`/movie/imdb/${movie.imdbID}`)}>
+                        See Details
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              </Grid>
+            )}
+          </Grid>
+          : null
+        }
+      {/* <Button>Load More</Button> */}
+    </div>
   );
 };
 
-export default MovieList;
+export default withRouter(MovieList);

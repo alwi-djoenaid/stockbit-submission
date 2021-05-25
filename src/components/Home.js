@@ -2,6 +2,7 @@ import { Button, Card, CardContent, Container, Grid, IconButton, Input, InputBas
 import SearchIcon from '@material-ui/icons/Search';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { withRouter } from 'react-router';
 import { getMovieByKeyword, movieList } from '../container/MovieSlice';
 import MovieList from './MovieList';
 
@@ -29,31 +30,29 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = props => {
   const classes = useStyles();
-  const movies = useSelector(movieList);
   const dispatch = useDispatch();
 
   const [movieName, setMovieName] = useState('');
 
   return (
     <Container maxWidth="lg">
-    <div className={classes.wrapper}>
-      <div className={classes.searchBox}>
-        <Paper className={classes.paper}>
-          <Input placeholder="Search any keyword" className={classes.input} inputProps={{ 'aria-label': 'description' }} onChange={(event) => setMovieName(event.target.value)}></Input>
-          <IconButton onClick={() => dispatch(getMovieByKeyword(movieName))}>
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+      <div className={classes.wrapper}>
+        <div className={classes.searchBox}>
+          <Paper className={classes.paper}>
+            <Input placeholder="Search any keyword" className={classes.input} inputProps={{ 'aria-label': 'description' }} onChange={(event) => setMovieName(event.target.value)}></Input>
+            <IconButton onClick={() => dispatch(getMovieByKeyword(movieName))}>
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        </div>
+        <div>
+          <div>
+            <MovieList />
+          </div>
+        </div>
       </div>
-      <div>
-      <div>
-        <MovieList />
-      </div>
-      <Button>Load More</Button>
-      </div>
-    </div>
     </Container>
   );
 };
 
-export default Home;
+export default withRouter(Home);
