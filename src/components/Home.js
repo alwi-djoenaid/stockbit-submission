@@ -1,8 +1,9 @@
-import { IconButton, Input, InputBase, makeStyles, Paper } from '@material-ui/core';
+import { Card, CardContent, Container, Grid, IconButton, Input, InputBase, makeStyles, Paper, Typography } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { getMovieByKeyword } from '../container/MovieSlice';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMovieByKeyword, movieList } from '../container/MovieSlice';
+import MovieList from './MovieList';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -28,15 +29,13 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = props => {
   const classes = useStyles();
+  const movies = useSelector(movieList);
   const dispatch = useDispatch();
 
   const [movieName, setMovieName] = useState('');
 
-  const searchMovies = (keyword) => {
-
-  }
-
   return (
+    <Container maxWidth="lg">
     <div className={classes.wrapper}>
       <div className={classes.searchBox}>
         <Paper className={classes.paper}>
@@ -46,7 +45,13 @@ const Home = props => {
           </IconButton>
         </Paper>
       </div>
+      <div>
+      <div>
+        <MovieList />
+      </div>
+      </div>
     </div>
+    </Container>
   );
 };
 

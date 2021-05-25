@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import MovieService from "../services/MovieService";
 
-const movieService = new MovieService()
+const movieService = new MovieService();
 
 const initialState = {
   value: [],
@@ -12,8 +12,8 @@ export const getMovieByKeyword = createAsyncThunk(
   'movies/getByKeyword',
   async (keyword) => {
     const response = await movieService.getMovieByKeyword(keyword);
-    console.log(response.data)
-    return response.data;
+    console.log(response.data.Search)
+    return response.data.Search;
   },
 );
 
@@ -32,9 +32,12 @@ export const movieSlice = createSlice({
       })
       .addCase(getMovieByKeyword.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value.push(action.payload);
+        state.value = action.payload;
+        console.log(state.value);
       })
   }
 });
+
+export const movieList = (state) => state.movie.value;
 
 export default movieSlice.reducer;
