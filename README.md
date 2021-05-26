@@ -1,4 +1,4 @@
-##React Movies Catalogue
+## React Movies Catalogue
 
 This project contains movie catalogue integrated with anagram logic test answer.
 
@@ -21,7 +21,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Unit Test Component
 
-You can find the unit tests at App.test.js
+You can find the unit tests at App.test.js <br />
 There are three unit tests.
 
 ## Available Scripts
