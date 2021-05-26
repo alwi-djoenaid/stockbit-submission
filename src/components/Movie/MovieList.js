@@ -3,7 +3,7 @@ import React from 'react';
 import ImageZoom from 'react-medium-image-zoom';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { movieList } from '../../container/MovieSlice';
+import { movieList, resultFound } from '../../container/MovieSlice';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -53,10 +53,12 @@ const useStyles = makeStyles((theme) => ({
 const MovieList = (props) => {
   const classes = useStyles();
   const movies = useSelector(movieList);
+  const foundResult = useSelector(resultFound);
 
   return (
     <div>
-        {movies.length !== 0 ? 
+      {foundResult === true ?
+        <div>
           <Grid container spacing={2}>
             {movies.Search.map((movie, i) => 
               <Grid key={i} item  xs={12} md={6} lg={4}>
@@ -98,8 +100,8 @@ const MovieList = (props) => {
               </Grid>
             )}
           </Grid>
-          : null
-        }
+        </div>
+      : null}
       {/* <Button>Load More</Button> */}
     </div>
   );

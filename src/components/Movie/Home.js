@@ -2,9 +2,9 @@ import {Container, IconButton, Input, makeStyles, Paper, Snackbar} from '@materi
 import SearchIcon from '@material-ui/icons/Search';
 import {Alert} from '@material-ui/lab';
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {getMovieByKeyword,} from '../../container/MovieSlice';
+import {errorMessage, getMovieByKeyword, resultFound,} from '../../container/MovieSlice';
 import MovieList from './MovieList';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const message = useSelector(errorMessage);
+  const foundResult = useSelector(resultFound);
 
   const [movieName, setMovieName] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -49,6 +51,11 @@ const Home = props => {
       dispatch(getMovieByKeyword(movieName));
     };
   };
+
+  const isEmpty = (string) => {
+    if(string.length > 0) return false;
+    else return true;
+  }
 
   return (
     <Container maxWidth="lg">
@@ -74,14 +81,26 @@ const Home = props => {
         </div>
         <div>
           <div>
-            <MovieList />
+            {foundResult === true ?
+              <MovieList /> 
+              : 
+              <Snackbar open={openSnackbar} onClose={closeSnackbar}
+                autoHideDuration={5000} 
+                anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
+                  <Alert severity="error">{message}</Alert>
+              </Snackbar>
+            }
           </div>
         </div>
       </div>
       <Snackbar open={openSnackbar} onClose={closeSnackbar}
         autoHideDuration={5000} 
         anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
-        <Alert severity="error">Unable to search. Please insert any keyword</Alert>
+        {isEmpty(movieName) ?
+          <Alert severity="error">Unable to search. Please insert any keyword</Alert>
+          :
+          <Alert severity="error">{message}</Alert>
+        }
       </Snackbar>
     </Container>
   );

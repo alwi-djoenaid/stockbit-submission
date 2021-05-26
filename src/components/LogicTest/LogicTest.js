@@ -20,22 +20,41 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     flex: 1
+  },
+  wordList: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  wordListHeader: {
+    fontSize: '18px',
+    margin: '12px 0',
+    fontWeight: '500'
   }
 }));
 
 const LogicTest = () => {
   const classes = useStyles();
 
-  const [word, setWord] = useState('');
+  const [word, setWord] = useState();
   const [wordArray, setWordArray] = useState([]);
-  const [anagramList, setAnagramList] = useState([]);
   let anagram = [];
 
+  /**
+   * 
+   * @param {*} word The inserted word by user
+   * inserted words kept at wordArray state.
+   */
   const addWord = (word) => {
     setWordArray(oldArray => [...oldArray, word]);
-    console.log(wordArray);
   }
 
+  /**
+   * 
+   * @param {*} word The inserted word
+   * @returns lowered case sorted word
+   * and sorted in alphabetical order.
+   */
   const sortWord = (word) => {
     const arr = word.split('');
     let temp;
@@ -52,9 +71,16 @@ const LogicTest = () => {
     return arr.join('').toLowerCase();
   }
 
+  const resetWordList = () => {
+    setWordArray([])
+  }
+
+  /**
+   * Checks the anagram possibilities
+   * from the inserted words.
+   */
   const checkAnagram = () => {
-    setAnagramList([]);
-    console.log(wordArray)
+    console.log('List of words = ', wordArray)
     for(let i=0 ; i<wordArray.length ; i++) {
       let sortedWord = sortWord(wordArray[i]);
 
@@ -64,25 +90,16 @@ const LogicTest = () => {
       } else {
         anagram[sortedWord] = [wordArray[i]];
       }
-      
-      setAnagramList(anagram);
-      console.log(anagram)
+
+      if(i === (wordArray.length - 1)) {
+        console.log('Possible anagram lists = ', anagram)
+      }
     }
   }
 
-  // const sortAnagramResult = () => {
-  //   let temp;
-  //   for(let i=0 ; i<anagram.length ; i++) {
-  //     for(let j=i+1 ; j<anagram.length ; j++) {
-  //       if(anagram[i].length > anagram[j].length) {
-  //         temp = anagram[i];
-  //         anagram[i] = anagram[j];
-  //         anagram[j] = temp;
-  //       }
-  //     }
-  //   }
-  // }
-
+  /**
+   * Renders the components.
+   */
   return (
     <Container maxWidth="lg">
       <div className={classes.wrapper}>
@@ -95,30 +112,18 @@ const LogicTest = () => {
             >
             </Input>
             <div style={{marginLeft: '12px'}}>
-              <Button color="secondary" onClick={() => addWord(word)}>Insert another word</Button>
+              <Button color="primary" onClick={() => addWord(word)}>Insert another word</Button>
               <Button color="primary" onClick={() => checkAnagram()}>Check anagram</Button>
+              <Button color="secondary" onClick={() => resetWordList()}>Reset Words</Button>
             </div>
           </Paper>
         </div>
-        <div>
-          <Typography>List of Words</Typography>
-          {wordArray.map((word) => 
-            <Typography>{word}</Typography>
+        <div className={classes.wordList}>
+          <Typography className={classes.wordListHeader}>List of Words</Typography>
+          {wordArray.map((word, i) => 
+            <Typography key={i}>{word}</Typography>
           )}
         </div>
-        {/* <div>
-          <Typography>List of Anagrams</Typography>
-          {anagramList.map((list) => 
-            <div>
-              <Typography>{list}</Typography>
-              <div>
-                {list.map((wordList) => 
-                  <Typography>{wordList}</Typography>
-                )}
-              </div>
-            </div>
-          )}
-        </div> */}
       </div>
     </Container>
   );

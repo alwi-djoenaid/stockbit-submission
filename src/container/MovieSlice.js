@@ -6,6 +6,8 @@ const movieService = new MovieService();
 const initialState = {
   value: [],
   status: 'idle',
+  resultFound: false,
+  errorMessage: '',
   movieDetail: {},
   openSnackbar: 'false'
 }
@@ -41,13 +43,16 @@ export const movieSlice = createSlice({
       })
       .addCase(getMovieByKeyword.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.value = action.payload;
-        console.log(state.value)
-
-        if(state.value === undefined){
-          setTimeout(() => {
-            state.openSnackbar = true;
-          }, 3000)
+        console.log(action.payload)
+        if(action.payload.Response) {
+          state.resultFound = true;
+          state.value = action.payload;
+          console.log(state.value.Response)
+        } else if(!action.payload.Response) {
+          state.resultFound = false;
+          state.errorMessage = action.payload.Error
+          console.log(action.payload.Error)
+          state.openSnackbar = true;
         }
       })
       .addCase(getMovieByImdbId.pending, (state) => {
@@ -62,5 +67,7 @@ export const movieSlice = createSlice({
 
 export const movieList = (state) => state.movie.value;
 export const movieDetails = (state) => state.movie.movieDetail;
+export const errorMessage = (state) => state.movie.errorMessage
+export const resultFound = (state) => state.movie.resultFound;
 
 export default movieSlice.reducer;

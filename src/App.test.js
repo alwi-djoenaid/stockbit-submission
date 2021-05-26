@@ -8,18 +8,6 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import MovieDetails from './components/Movie/MovieDetails';
 
-// test('renders learn react link', () => {
-//   const { getByText } = render(
-//     <BrowserRouter>
-//       <Provider store={store}>
-//         <App />
-//       </Provider>
-//     </BrowserRouter>
-//   );
-
-//   expect(getByText(/learn/i)).toBeInTheDocument();
-// });
-
 /**
  * Test for rendering the whole application
  */
