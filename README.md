@@ -1,4 +1,28 @@
+##React Movies Catalogue
+
+This project contains movie catalogue integrated with anagram logic test answer.
+
+## Logic Test Answer Instruction
+
+1. On the application, click Logic Test menu on the app bar.
+2. Click the search box, enter any word. Then click INSERT ANOTHER WORD.
+3. Repeat step 2 if you want to insert another word.
+4. Once you finish, click CHECK ANAGRAM.
+5. Press F12 and click Console tab to see the results.
+
+## Features
+
+1. Home button on app bar to redirect user to homepage.
+2. User can search his/her desired movie by entering any keyword then click search button (or press enter on the keyboard).
+3. On the search result, user can zoom in a movie poster simply by clicking on of the movie posters. User can also look at the movie details by clicking See Details, he/she will be directed to a single movie details page.
+4. On the single movie details page, it displays its title, duration, genre, director, writer, production, casts, and synopsis.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+## Unit Test Component
+
+You can find the unit tests at App.test.js
+There are three unit tests.
 
 ## Available Scripts
 
@@ -26,16 +50,6 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
 
