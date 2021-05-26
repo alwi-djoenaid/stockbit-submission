@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     paddingLeft: '50px',
     paddingRight: '50px',
-    paddingTop: '44px',
+    paddingTop: '64px',
     paddingBottom: '20px',
     display: 'flex',
     justifyContent: 'center'

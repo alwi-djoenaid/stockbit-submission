@@ -1,10 +1,10 @@
-import { Button, Card, CardContent, Container, Grid, IconButton, Input, InputBase, makeStyles, Paper, Snackbar, Typography } from '@material-ui/core';
+import {Container, IconButton, Input, makeStyles, Paper, Snackbar} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { Alert } from '@material-ui/lab';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { withRouter } from 'react-router';
-import { getMovieByKeyword, movieList } from '../../container/MovieSlice';
+import {Alert} from '@material-ui/lab';
+import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {withRouter} from 'react-router-dom';
+import {getMovieByKeyword,} from '../../container/MovieSlice';
 import MovieList from './MovieList';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     flex: 1
-  }
+  },
 }));
 
 const Home = props => {
@@ -38,7 +38,7 @@ const Home = props => {
 
   const closeSnackbar = () => {
     setOpenSnackbar(false);
-  }
+  };
 
   const handleClick = (movieName) => {
     if(movieName.length === 0) {
@@ -47,8 +47,8 @@ const Home = props => {
       }, 300);
     } else {
       dispatch(getMovieByKeyword(movieName));
-    }
-  }
+    };
+  };
 
   return (
     <Container maxWidth="lg">
@@ -57,7 +57,7 @@ const Home = props => {
           <Paper className={classes.paper}>
             <Input placeholder="Search any keyword" 
               className={classes.input} 
-              inputProps={{ 'aria-label': 'description' }} 
+              inputProps={{'aria-label': 'description'}} 
               onChange={(event) => setMovieName(event.target.value)}
               onKeyPress={(event) => {
                 if(event.key === 'Enter'){

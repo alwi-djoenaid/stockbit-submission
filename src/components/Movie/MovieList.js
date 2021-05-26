@@ -2,7 +2,7 @@ import { Button, Card, CardContent, Grid, makeStyles, Typography } from '@materi
 import React from 'react';
 import ImageZoom from 'react-medium-image-zoom';
 import { useSelector } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter } from 'react-router-dom';
 import { movieList } from '../../container/MovieSlice';
 
 const useStyles = makeStyles((theme) => ({

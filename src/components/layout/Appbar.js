@@ -1,6 +1,6 @@
 import {AppBar, Button, makeStyles, Typography} from '@material-ui/core';
 import React from 'react';
-import {withRouter} from 'react-router';
+import {withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +28,7 @@ const Appbar = (props) => {
         <Typography variant="h1" className={classes.titleHeader}>
           Movie Catalogue
         </Typography>
-        <Button color="inherit" onClick={() => props.history.push('/home')}>Home</Button>
+        <Button color="inherit" onClick={() => props.history.push('/')}>Home</Button>
         <Button color="inherit" onClick={() => props.history.push('/logicTest')}>Logic Test</Button>
       </AppBar>
     </div>

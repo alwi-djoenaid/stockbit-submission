@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc */
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
-import {Counter} from './features/counter/Counter';
+// import logo from './logo.svg';
+// import {Counter} from './features/counter/Counter';
 import './App.css';
-import {Redirect, Route, Switch, withRouter} from 'react-router';
+import {Redirect, Route, Router, Switch, withRouter} from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Home from './components/Movie/Home';
 import MovieDetails from './components/Movie/MovieDetails';
@@ -72,10 +72,10 @@ function App2(props) {
   routes = (
     <Layout>
       <Switch>
-        <Route path="/home" exact component={Home} />
+        <Route path="/" exact component={Home} />
         <Route path="/movie/imdb/:id" exact component={MovieDetails} />
         <Route path="/logicTest" exact component={LogicTest} />
-        <Redirect to="/home" />
+        <Redirect to="/" />
       </Switch>
     </Layout>
   );
