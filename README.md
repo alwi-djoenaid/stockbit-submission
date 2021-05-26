@@ -1,6 +1,6 @@
 ## React Movies Catalogue
 
-This project contains movie catalogue integrated with anagram logic test answer.
+This project contains movie catalogue integrated with anagram logic test answer. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Logic Test Answer Instruction
 
@@ -17,7 +17,6 @@ This project contains movie catalogue integrated with anagram logic test answer.
 3. On the search result, user can zoom in a movie poster simply by clicking on of the movie posters. User can also look at the movie details by clicking See Details, he/she will be directed to a single movie details page.
 4. On the single movie details page, it displays its title, duration, genre, director, writer, production, casts, and synopsis.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Unit Test Component
 
