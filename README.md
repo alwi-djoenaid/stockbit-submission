@@ -8,8 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 1. On the application, click Logic Test menu on the app bar.
 2. Click the search box, enter any word. Then click INSERT ANOTHER WORD.
 3. Repeat step 2 if you want to insert another word.
-4. Once you finish, click CHECK ANAGRAM.
-5. Press F12 and click Console tab to see the results.
+4. Once you are done, click CHECK ANAGRAM.
+5. Press F12 and click Console tab to see the anagram possibilites result.
 
 ## Features
 
@@ -23,7 +23,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 There are five folders inside src folder:
 
 1. app - Used for Redux store configuration.
-2. assets - Contains used properties such .img files.
+2. assets - Contains used properties such as .img files.
 3. components - Web components are defined inside this folder
 4. container - Contains logic that is used for managing states and web components.
 5. services - Contains logic that is used for consuming API.
