@@ -1,6 +1,7 @@
 ## React Movies Catalogue
 
-This project contains movie catalogue integrated with anagram logic test answer. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+This project contains movie catalogue integrated with anagram logic test answer and writtes test case in .pdf file. <br />
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Logic Test Answer Instruction
 
@@ -17,6 +18,15 @@ This project contains movie catalogue integrated with anagram logic test answer.
 3. On the search result, user can zoom in a movie poster simply by clicking on of the movie posters. User can also look at the movie details by clicking See Details, he/she will be directed to a single movie details page.
 4. On the single movie details page, it displays its title, duration, genre, director, writer, production, casts, and synopsis.
 
+## File Structure
+
+There are five folders inside src folder:
+
+1. app - Used for Redux store configuration.
+2. assets - Contains used properties such .img files.
+3. components - Web components are defined inside this folder
+4. container - Contains logic that is used for managing states and web components.
+5. services - Contains logic that is used for consuming API.
 
 ## Unit Test Component
 
@@ -49,9 +59,3 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
