@@ -1,10 +1,16 @@
-import {Container, IconButton, Input, makeStyles, Paper, Snackbar} from '@material-ui/core';
+/* eslint-disable valid-jsdoc */
+import {Container,
+  IconButton,
+  Input,
+  makeStyles,
+  Paper,
+  Snackbar} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import {Alert} from '@material-ui/lab';
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import {errorMessage, getMovieByKeyword, resultFound,} from '../../container/MovieSlice';
+import {getMovieByKeyword} from '../../container/MovieSlice';
 import MovieList from './MovieList';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,25 +21,27 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '20px',
   },
   searchBox: {
-    padding: '24px'
+    padding: '24px',
   },
   paper: {
     padding: '5px 12px',
     maxWidth: '500px',
     display: 'flex',
     alignItems: 'center',
-    margin: 'auto'
+    margin: 'auto',
   },
   input: {
-    flex: 1
+    flex: 1,
   },
 }));
 
-const Home = props => {
+/**
+ *
+ * @return Hompage web components
+ */
+const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const message = useSelector(errorMessage);
-  const foundResult = useSelector(resultFound);
 
   const [movieName, setMovieName] = useState('');
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -43,7 +51,7 @@ const Home = props => {
   };
 
   const handleClick = (movieName) => {
-    if(movieName.length === 0) {
+    if (movieName.length === 0) {
       setTimeout(() => {
         setOpenSnackbar(true);
       }, 300);
@@ -52,22 +60,17 @@ const Home = props => {
     };
   };
 
-  const isEmpty = (string) => {
-    if(string.length > 0) return false;
-    else return true;
-  }
-
   return (
     <Container maxWidth="lg">
       <div className={classes.wrapper}>
         <div className={classes.searchBox}>
           <Paper className={classes.paper}>
-            <Input placeholder="Search any keyword" 
-              className={classes.input} 
-              inputProps={{'aria-label': 'description'}} 
+            <Input placeholder="Search any keyword"
+              className={classes.input}
+              inputProps={{'aria-label': 'description'}}
               onChange={(event) => setMovieName(event.target.value)}
               onKeyPress={(event) => {
-                if(event.key === 'Enter'){
+                if (event.key === 'Enter') {
                   event.preventDefault();
                   handleClick(movieName);
                 }
@@ -81,26 +84,16 @@ const Home = props => {
         </div>
         <div>
           <div>
-            {foundResult === true ?
-              <MovieList /> 
-              : 
-              <Snackbar open={openSnackbar} onClose={closeSnackbar}
-                autoHideDuration={5000} 
-                anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
-                  <Alert severity="error">{message}</Alert>
-              </Snackbar>
-            }
+            <MovieList />
           </div>
         </div>
       </div>
       <Snackbar open={openSnackbar} onClose={closeSnackbar}
-        autoHideDuration={5000} 
+        autoHideDuration={5000}
         anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
-        {isEmpty(movieName) ?
-          <Alert severity="error">Unable to search. Please insert any keyword</Alert>
-          :
-          <Alert severity="error">{message}</Alert>
-        }
+        <Alert severity="error">
+          Unable to search. Please insert any keyword
+        </Alert>
       </Snackbar>
     </Container>
   );

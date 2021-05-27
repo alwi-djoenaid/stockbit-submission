@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { render } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import { getMovieByImdbId, getMovieByKeyword } from './container/MovieSlice';
+import {render} from '@testing-library/react';
+import {Provider} from 'react-redux';
+import {store} from './app/store';
+import {getMovieByImdbId, getMovieByKeyword} from './container/MovieSlice';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import MovieDetails from './components/Movie/MovieDetails';
 
 /**
@@ -14,12 +14,12 @@ import MovieDetails from './components/Movie/MovieDetails';
 test('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
-  , div);
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
+      , div);
   ReactDOM.unmountComponentAtNode(div);
 });
 
@@ -40,11 +40,11 @@ test('success load movie details page', async () => {
   expect(data).toBeDefined();
 
   const {getByText} = render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <MovieDetails />
-      </Provider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
+          <MovieDetails />
+        </Provider>
+      </BrowserRouter>,
   );
 
   expect(getByText(/Genre/i)).toBeInTheDocument();
@@ -53,4 +53,4 @@ test('success load movie details page', async () => {
   expect(getByText(/Production/i)).toBeInTheDocument();
   expect(getByText(/Casts/i)).toBeInTheDocument();
   expect(getByText(/Synopsis/i)).toBeInTheDocument();
-})
+});
